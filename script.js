@@ -4,6 +4,7 @@ let headerInput = document.querySelector('.header-input'),
     domic = document.querySelector('.domic');
 
 class DomElement {
+    element;
     constructor(nameClass, height, width, bg, fontSize) {
         this.selector = nameClass
         this.height = height;
@@ -13,30 +14,35 @@ class DomElement {
     }
      tochka  () {
         let cla =  this.selector.slice(1);
-        let element = document.createElement('div'); //document.createElement('li');
-        element.classList.add(cla);
-        element.style.cssText = ` 
+        this.element = document.createElement('div'); //document.createElement('li');
+        this.element.classList.add(cla);
+        this.element.style.cssText = ` 
             height: ${this.height}px;
             width: ${this.width}px;
             background: ${this.bg}`;
-            console.log('element: ', element);
-            return element;
+            console.log('element: ', this.element);
+            return this.element;
+            
     }
     netochka  () {
         let atr =  this.selector.slice(1);
-        let element = document.createElement('p'); //newElement.setAttribute('id','idName')
-        element.setAttribute('id', atr);
-        element.style.cssText = ` 
-            height: ${height}px;
-            width: ${width}px;
-            background: ${bg};
-            font-size: ${fontSize}px`;
-    }
+        this.element = document.createElement('p'); //newElement.setAttribute('id','idName')
+        this.element.setAttribute('id', atr);
+        this.element.style.cssText = ` 
+            height: ${this.height}px;
+            width: ${this.width}px;
+            background: ${this.bg};
+            font-size: ${this.fontSize}px`;
+
+            return this.element;
+        }
     dif  () {
         if (this.selector[0] === '.') {
-            this.tochka();
+            let div=this.tochka();
+       return div;
         } else if (this.selector[0] === '#') {
-        this.netochka();
+            let pi=  this.netochka();
+            return pi;
         }
     }
 };
@@ -45,12 +51,12 @@ DomElement.prototype
 let height = '80px';
 let width = '80px';
 let bgd = '#444';
-let palas = '.hai';
+let palas = '#hai';
 let  fontSize= '14';
 let dome = new DomElement(palas, height, width, bgd, fontSize);
-console.log('dome: ', dome);
-let par=dome.dif();
+
+let par = dome.dif();
+
 console.log('par: ', par);
 
-console.log('domic: ', domic);
 domic.append(par);
