@@ -1,42 +1,45 @@
 'use strict';
 let headerInput = document.querySelector('.header-input'),
     Add = document.querySelector('#add'),
-    header = document.querySelector('.header');
+    domic = document.querySelector('.domic');
 
-const DomElement = function () {
-    this.selector = '';
-    this.height = 0;
-    this.width = 0;
-    this.bg = 0;
-    this.fontSize = 0;
-    this.element;
-};
-DomElement.prototype.addSelector = function (elem) {
-    if (elem[0] === '.') {
-        let cla = elem.slice(1);
-        this.element = document.createElement('div'); //document.createElement('li');
-        element.classList.add(cla);
-        console.log('tempElem: ', this.element);
+    let domElement=class DomElement {
+       element;
+    constructor(nameClass,height, width, bg, fontSize) {
 
-    } else if (elem[0] === '#') {
-        let atr = elem.slice(1);
-        this.element = document.createElement('p'); //newElement.setAttribute('id','idName')
-        this.element.setAttribute('id', atr);
-        console.log('tempElem: ', this.element);
-    }
+        
+        // this.height = height;
+        // this.width = width;
+        // this.bg = bg;
+        // this.fontSize = fontSize;
+        // this.nameClass=nameClass;
+        // this.element ;
 
-};
-DomElement.prototype.addDom=function(event){
-    event.preventDefault();
-    this.element.innerText = headerInput.value;
-    header.insertAdjacentElement('afterend', this.element);
-    console.log('this.element: ', this.element);
-};
-DomElement.prototype.batton = function () {
-   
+        if(nameClass[0]==='.'){
+            let cla = nameClass.slice(1);
+            this.element = document.createElement('div'); //document.createElement('li');
+            this.element.classList.add(cla);
+            this.element.style.height=  height;
+            this.element.style.width=  width;
+            this.element.style.bg= bg;
+            console.log('this.element: ', this.element);
+
+        }else if(nameClass[0]==='#'){
+            let atr = nameClass.slice(1);
+            this.element = document.createElement('p'); //newElement.setAttribute('id','idName')
+            this.element.setAttribute('id', atr);
+            this.element.style.fontSize=fontSize;
+            this.element.style.bg=bg;
     
-    Add.addEventListener('click', this.addDom.bind(this));
-};
-const domelem = new DomElement();
-domelem.addSelector('#class');
-domelem.batton();
+        }
+    }
+    };
+  
+let height='80px';
+let width='80px';
+let bgd='#444';
+let palas='.hai';
+
+let dome = new domElement(palas,height,width,bgd);
+console.log('dome: ', dome);
+domic.append(dome);
