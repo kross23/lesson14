@@ -12,7 +12,7 @@ DomElement.prototype.render = function () {
     let bodyElement;
     if (this.selector[0] === '.') {
         let diV = document.createElement('div');
-        diV.textContent = 'Our Class' + this.selector.slice(1);
+        diV.textContent = 'Это div  - ' + this.selector.slice(1);
         diV.classList.add(this.selector.slice(1));
         document.body.appendChild(diV);
         bodyElement = (diV);
@@ -20,25 +20,21 @@ DomElement.prototype.render = function () {
     }
     if (this.selector[0] === '#') {
         let lem = document.createElement('p');
-        lem.textContent = 'Our Class' + this.selector.slice(1);
+        lem.textContent = 'это параграф  -  ' + this.selector.slice(1);
         lem.id = this.selector.slice(1);
         document.body.appendChild(lem);
         bodyElement = (lem);
+        console.log('lem: ', lem);
     }
     bodyElement.style.cssText = `
-    
-heigth:${this.height}px;
-width:${this.width}px;
-background-color:${this.bg}px;
-fontSize:${this.fontSize}px;
+    height: ${this.height}px;
+      width: ${this.width}px;
+      background-color: ${this.bg};
+      font-size: ${this.fontSize}px;
 `;
-console.log('bodyElement: ', bodyElement);
+    console.log('bodyElement: ', bodyElement.style);//height:
 };
-let height = '80px';
-let width = '80px';
-let bg = '#444';
-let palas = '.hai';
-let fontSize = '14';
-let dome = new DomElement('.hai','80px','80px', '#444', '14');
+
+let dome = new DomElement('.hai', '500', '500', 'steelblue', '34');
 
 dome.render();
